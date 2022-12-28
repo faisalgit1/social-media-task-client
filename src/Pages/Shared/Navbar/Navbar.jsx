@@ -11,7 +11,6 @@ const Header = () => {
     const [open, setOpen] = useState(false)
 
     const { user, logOut } = useContext(AuthContext)
-    console.log(user.photoURL);
 
 
     const handleLogOut = () => {
@@ -42,7 +41,7 @@ const Header = () => {
                     <li className='font-semibold my-2 mr-4'>
                         <NavLink className={({ isActive }) =>
                             isActive ? ' text-green-500' : undefined
-                        } to='/media'>Media</NavLink >
+                        } to='/addpost'>Media</NavLink >
                     </li>
 
                     {/* User  */}

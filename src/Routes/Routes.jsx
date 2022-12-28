@@ -5,6 +5,7 @@ import Login from "../Pages/Authentication/Login";
 import Register from "../Pages/Authentication/Register"
 import Home from "../Pages/Home/Home/Home"
 import Media from "../Pages/Media/Media";
+import PostDetails from "../Pages/PostDetails/PostDetails";
 
 
 const routes = createBrowserRouter([{
@@ -33,6 +34,11 @@ const routes = createBrowserRouter([{
             loader: () => fetch('http://localhost:5000/addpost'),
             element: <Media></Media>
         },
+        {
+            path: '/addpost/:id',
+            loader: ({ params }) => fetch(`http://localhost:5000/addpost/${params.id}`),
+            element: <PostDetails></PostDetails>
+        }
     ]
 }])
 

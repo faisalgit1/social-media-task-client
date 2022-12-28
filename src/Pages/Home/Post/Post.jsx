@@ -1,8 +1,11 @@
 import React from "react";
+import { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const Post = () => {
+    const { user } = useContext(AuthContext)
     const navigate = useNavigate()
     const handleSubmit = e => {
         e.preventDefault()
@@ -25,7 +28,9 @@ const Post = () => {
 
                     const addpost = {
                         write: write,
-                        img: imgData.data.url
+                        img: imgData.data.url,
+                        author: user?.displayName,
+                        authorimg: user?.photoURL
                     }
 
                     fetch('http://localhost:5000/addpost', {

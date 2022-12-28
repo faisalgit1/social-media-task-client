@@ -10,9 +10,9 @@ const MediaCard = ({ data }) => {
             <div className="rounded-md shadow-md sm:w-96 dark:bg-gray-900 dark:text-gray-100">
                 <div className="flex justify-center items-center justify-between p-3">
                     <div className="flex items-center space-x-2">
-                        <img src={user.photoURL} alt="" className="object-cover object-center w-10 h-10 rounded-full shadow-sm dark:bg-gray-500 dark:border-gray-700" />
+                        <img src={user?.photoURL} alt="" className="object-cover object-center w-10 h-10 rounded-full shadow-sm dark:bg-gray-500 dark:border-gray-700" />
                         <div className="-space-y-1">
-                            <h2 className="text-1xl font-bold leading-none">{user.displayName}</h2>
+                            <h2 className="text-1xl font-bold leading-none">{user?.displayName}</h2>
                         </div>
                     </div>
                     <button title="Open options" type="button">

@@ -1,10 +1,41 @@
 import React from 'react';
 import { useContext } from 'react';
+import { toast } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const MediaCard = ({ data }) => {
     const { user } = useContext(AuthContext)
-    const { img, write } = data
+    const { _id, img, write } = data
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        const form = e.target;
+        const message = form.message.value
+
+        const comment = {
+            commenterID: _id,
+            commenterName: user?.displayName,
+            commenterEmail: user?.email,
+            commenter: user?.photoURL,
+            comment: message,
+
+        }
+
+        fetch('http://localhost:5000/comment', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(comment)
+        })
+            .then(result => {
+
+                toast.success('Comment Added')
+                form.reset()
+            })
+            .catch(err => console.log(err))
+    }
     return (
         <div className='flex items-center justify-center '>
             <div className="rounded-md shadow-md sm:w-96 dark:bg-gray-900 dark:text-gray-100">
@@ -48,18 +79,41 @@ const MediaCard = ({ data }) => {
                                 </svg>
                             </button>
                         </div>
-                        <button type="button" title="Bookmark post" className="flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current">
-                                <path d="M424,496H388.75L256.008,381.19,123.467,496H88V16H424ZM120,48V456.667l135.992-117.8L392,456.5V48Z"></path>
-                            </svg>
+                        <button className="flex items-center justify-center btn btn-outline py-2">
+                            See Details
                         </button>
                     </div>
 
-                    <div className="space-y-3">
+                    {/* <div className="space-y-3">
                         <p className="text-sm">
                             <span className="text-base font-semibold">leroy_jenkins72</span>Nemo ea quasi debitis impedit!
                         </p>
                         <input type="text" placeholder="Add a comment..." className="w-full py-0.5 dark:bg-transparent border-none rounded text-sm pl-0 dark:text-gray-100" />
+                    </div> */}
+                    <div className='flex justify-center'>
+                        {
+                            user?.uid ?
+                                <>
+                                    <form onSubmit={handleSubmit} className='flex  gap-3 my-10 items-center'>
+                                        <img className='w-12 rounded-full' src={user?.photoURL} alt="" />
+                                        <input name='message' type="text" placeholder="Type Your Comment" className="input p-2 input-bordered w-60 md:w-40" />
+                                        <button type='submit'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 hover:text-gray-700 text-gray-900 h-6">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                                            </svg>
+                                        </button>
+
+                                    </form>
+                                </>
+                                :
+                                <>
+                                    <p className="h-screen font-semibold my-10 ">
+
+                                        Please <Link className='underline' to='/login'>Login</Link> to add a comment
+                                    </p>
+
+                                </>
+                        }
                     </div>
                 </div>
             </div>

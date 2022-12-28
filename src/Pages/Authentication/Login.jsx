@@ -25,7 +25,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset()
-                fetch('https://server-assignment-11-faisalgit1.vercel.app/jwt', {
+                fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -34,7 +34,7 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('photoToken', data.token)
+                        localStorage.setItem('socialToken', data.token)
                         toast.success('Login Success')
                         setTimeout(() => {
                             navigate(from, { replace: true })
@@ -61,7 +61,7 @@ const Login = () => {
         googleSignIn()
             .then(result => {
                 const user = result.user;
-                fetch('https://server-assignment-11-faisalgit1.vercel.app/jwt', {
+                fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -70,7 +70,7 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('photoToken', data.token)
+                        localStorage.setItem('socialToken', data.token)
                         toast.success('Logined SuccessFully')
                         setTimeout(() => {
                             navigate(from, { replace: true })

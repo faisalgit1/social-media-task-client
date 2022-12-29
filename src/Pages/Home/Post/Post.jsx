@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider";
 
 const Post = () => {
@@ -33,7 +33,7 @@ const Post = () => {
                         authorimg: user?.photoURL
                     }
 
-                    fetch('http://localhost:5000/addpost', {
+                    fetch('https://social-media-task-server.vercel.app/addpost', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -62,8 +62,9 @@ const Post = () => {
                     <div className="h-48 mt-4">
                         <textarea
                             name="writing"
-                            className="textarea  border-2 border-gray-300 h-full w-full "
+                            className="textarea bg-sky-200 border-2 border-gray-300 h-full w-full "
                             placeholder="Your message..."
+                            required
                         ></textarea>
                     </div>
 
@@ -73,13 +74,25 @@ const Post = () => {
                             name="image"
                             type="file"
                             accept='image/*'
-                            className="file-input w-full border-2 border-gray-300"
+                            className="file-input bg-sky-200 w-full border-2 border-gray-300"
+                            required
                         />
                     </div>
+                    {
+                        user?.uid ?
+                            <>
+                                <button type="submit" class="btn btn-primary mt-4 mb-20 w-full">
+                                    Button
+                                </button>
+                            </>
+                            :
+                            <>
+                                <Link to='/login' class="btn btn-ghost text-white bg-rose-700 hover:bg-primary mt-4 mb-20 w-full">
+                                    Please  Login to add a Post
+                                </Link>
+                            </>
+                    }
 
-                    <button type="submit" class="btn btn-primary mt-4 w-full">
-                        Button
-                    </button>
                 </form>
             </div>
         </div>

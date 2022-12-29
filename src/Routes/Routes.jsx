@@ -26,17 +26,18 @@ const routes = createBrowserRouter([{
         },
         {
             path: '/about',
+            loader: () => fetch('https://social-media-task-server.vercel.app/users'),
             element: <About></About>
         },
 
         {
-            path: '/addpost',
-            loader: () => fetch('http://localhost:5000/addpost'),
+            path: '/media',
+            loader: () => fetch('https://social-media-task-server.vercel.app/addpost'),
             element: <Media></Media>
         },
         {
-            path: '/addpost/:id',
-            loader: ({ params }) => fetch(`http://localhost:5000/addpost/${params.id}`),
+            path: '/media/:id',
+            loader: ({ params }) => fetch(`https://social-media-task-server.vercel.app/media/${params.id}`),
             element: <PostDetails></PostDetails>
         }
     ]

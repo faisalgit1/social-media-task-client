@@ -21,15 +21,15 @@ const Header = () => {
 
 
     return (
-        <div className=' bg-white text-gray-900 bg-gray-900 dark:text-white text-white  dark:bg-gray-800 z-50 drop-shadow-xl sticky top-0       items-center md:px-10 px-4 py-3 flex justify-between w-full'>
+        <div className=' bg-primary text-primary-content dark:text-white text-white  dark:bg-gray-800 z-50 drop-shadow-xl sticky top-0       items-center md:px-10 px-4 py-3 flex justify-between w-full'>
 
             <div className='flex items-center'>
-                <img className='h-10 border z-10 dark:border-2  shadow-2xl rounded-full mr-2' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuQxnoQZV5MjK2EeVEC19KEr9wyXKVNZzZKg&usqp=CAU' alt="" />
+                <img className='h-10 border z-10 dark:border-2  shadow-2xl rounded-full mr-2' src='https://i.ibb.co/hHTbDGL/download-1.jpg' alt="" />
                 <h1 className='md:text-3xl text-white  text-2xl z-50 font-bold'>Social Media</h1>
 
             </div>
             <div>
-                <ul className={`md:flex rounded-lg bg-gray-900 items-center right-0 z-0 bg-white dark:bg-gray-800 w-full  text-center text-white justify-center ease-in  md:static  absolute ${open ? 'top-14' : 'top-[-800px]'}`}>
+                <ul className={`md:flex rounded-lg bg-primary text-primary-content items-center right-0 z-0 bg-white dark:bg-gray-800 w-full  text-center text-white justify-center ease-in  md:static  absolute ${open ? 'top-14' : 'top-[-800px]'}`}>
                     <li className='font-semibold my-2 mr-4'>
                         <NavLink className={({ isActive }) =>
                             isActive ? 'text-green-500 ' : undefined
@@ -41,7 +41,7 @@ const Header = () => {
                     <li className='font-semibold my-2 mr-4'>
                         <NavLink className={({ isActive }) =>
                             isActive ? ' text-green-500' : undefined
-                        } to='/addpost'>Media</NavLink >
+                        } to='/media'>Media</NavLink >
                     </li>
 
                     {/* User  */}

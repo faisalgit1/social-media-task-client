@@ -20,7 +20,7 @@ const PostDetails = () => {
             commenter: user?.photoURL,
             comment: message,
         }
-        fetch('http://localhost:5000/comment', {
+        fetch('https://social-media-task-server.vercel.app/comment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -37,7 +37,7 @@ const PostDetails = () => {
 
     const [allComments, setComments] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/allcomments')
+        fetch('https://social-media-task-server.vercel.app/allcomments')
             .then(res => res.json())
             .then(data => {
 
@@ -47,7 +47,7 @@ const PostDetails = () => {
 
             })
     }, [allComments, _id])
-    console.log(allComments)
+
     return (
         <div className='p-4'>
             <div className=' flex justify-center '>
@@ -75,10 +75,6 @@ const PostDetails = () => {
                                             </>
                                             :
                                             <>
-                                                <p className="h-screen font-semibold my-10 ">
-
-                                                    Please <Link className='underline' to='/login'>Login</Link> to add a comment
-                                                </p>
 
                                             </>
                                     }
@@ -88,8 +84,10 @@ const PostDetails = () => {
                     </div>
                 </div>
             </div>
-            <h1 className='text-center text-3xl font-bold mt-10'>All Commentes</h1>
-            <div className='flex flex-col items-center justify-center'>
+            {/* {show.map((post) => (
+                <div><h1>{post._id ? <><h1>All Comments</h1></> : <><h1>No Comments</h1></>}</h1></div>
+            ))} */}
+            <div className='flex flex-col items-center justify-center mt-10'>
                 {
                     allComments.map(data => <ShowComment
                         key={data._id}
